@@ -9,6 +9,7 @@ import (
 	"github.com/pelletier/go-toml"
 	"github.com/sirupsen/logrus"
 	"github.com/xtt28/neptune/commands"
+	"github.com/xtt28/neptune/database"
 	"github.com/xtt28/neptune/handlers"
 )
 
@@ -16,6 +17,11 @@ func main() {
 	log := logrus.New()
 	log.Formatter = &logrus.TextFormatter{ForceColors: true}
 	log.Level = logrus.DebugLevel
+
+	_, err := database.ConnectSQLite3("instancedata/data.sqlite3")
+	if err != nil {
+		log.Fatalf("could not connect to persistent data storage: %s", err.Error())
+	}
 
 	chat.Global.Subscribe(chat.StdoutSubscriber{})
 
