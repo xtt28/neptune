@@ -9,6 +9,7 @@ import (
 	"github.com/pelletier/go-toml"
 	"github.com/sirupsen/logrus"
 	"github.com/xtt28/neptune/commands"
+	"github.com/xtt28/neptune/config"
 	"github.com/xtt28/neptune/database"
 	"github.com/xtt28/neptune/handlers"
 )
@@ -29,6 +30,7 @@ func main() {
 	if err != nil {
 		log.Fatalln(err)
 	}
+	config.LoadNeptuneConfig()
 
 	srv := conf.New()
 	srv.CloseOnProgramEnd()
