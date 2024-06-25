@@ -2,11 +2,13 @@ package main
 
 import (
 	"fmt"
+	"os"
+
 	"github.com/df-mc/dragonfly/server"
 	"github.com/df-mc/dragonfly/server/player/chat"
 	"github.com/pelletier/go-toml"
 	"github.com/sirupsen/logrus"
-	"os"
+	"github.com/xtt28/neptune/commands"
 )
 
 func main() {
@@ -24,6 +26,8 @@ func main() {
 	srv := conf.New()
 	srv.CloseOnProgramEnd()
 
+	commands.RegisterCommands()
+	
 	srv.Listen()
 	for srv.Accept(nil) {
 	}
