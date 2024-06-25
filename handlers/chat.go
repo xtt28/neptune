@@ -3,7 +3,7 @@ package handlers
 import (
 	"fmt"
 
-	"github.com/TwiN/go-away"
+	goaway "github.com/TwiN/go-away"
 	"github.com/df-mc/dragonfly/server/event"
 	"github.com/df-mc/dragonfly/server/player"
 	"github.com/df-mc/dragonfly/server/player/chat"
@@ -13,17 +13,11 @@ import (
 	"gorm.io/gorm"
 )
 
-type ChatHandler struct {
-	player.NopHandler
-	db *gorm.DB
-	p *player.Player
+func newBaseHandler(db *gorm.DB, p *player.Player) *BasePlayerHandler {
+	return &BasePlayerHandler{db: db, p: p}
 }
 
-func newChatHandler(db *gorm.DB, p *player.Player) *ChatHandler {
-	return &ChatHandler{db: db, p: p}
-}
-
-func (m *ChatHandler) HandleChat(ctx *event.Context, message *string) {
+func (m *BasePlayerHandler) HandleChat(ctx *event.Context, message *string) {
 	ctx.Cancel()
 
 	*message = goaway.Censor(*message)
