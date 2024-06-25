@@ -3,9 +3,9 @@ package permissions
 type PermissionLevel uint
 
 const (
-	Default PermissionLevel = 100
-	Plus PermissionLevel = 150
-	Moderator PermissionLevel = 250
-	Admin PermissionLevel = 300
-	Owner PermissionLevel = 350
+	LvlDefault   PermissionLevel = 100
+	LvlPlus      PermissionLevel = 150
+	LvlModerator PermissionLevel = 250
+	LvlAdmin     PermissionLevel = 300
+	LvlOwner     PermissionLevel = 350
 )
