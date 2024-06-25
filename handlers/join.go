@@ -10,6 +10,7 @@ import (
 )
 
 func handleJoin(db *gorm.DB, p *player.Player) {
+	p.EnableInstantRespawn()
 	scoreboard.Render(p)
 
 	game.SendToSpawn(p, false)

@@ -15,6 +15,6 @@ func SendToSpawn(p *player.Player, sendTitle bool) {
 	p.SetGameMode(world.GameModeAdventure)
 	
 	if sendTitle {
-		p.SendTitle(title.New(text.Colourf("<red><bold>Respawned</bold></red>")).WithSubtitle(text.Colourf("<grey>You have respawned.</grey>")))
+		p.SendTitle(title.New(text.Colourf("<red><bold>You died</bold></red>")).WithSubtitle(text.Colourf("<grey>You have respawned.</grey>")))
 	}
 }
