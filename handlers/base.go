@@ -10,3 +10,7 @@ type BasePlayerHandler struct {
 	db *gorm.DB
 	p  *player.Player
 }
+
+func newBaseHandler(db *gorm.DB, p *player.Player) *BasePlayerHandler {
+	return &BasePlayerHandler{db: db, p: p}
+}

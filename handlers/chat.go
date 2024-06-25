@@ -5,17 +5,11 @@ import (
 
 	goaway "github.com/TwiN/go-away"
 	"github.com/df-mc/dragonfly/server/event"
-	"github.com/df-mc/dragonfly/server/player"
 	"github.com/df-mc/dragonfly/server/player/chat"
 	"github.com/sandertv/gophertunnel/minecraft/text"
 	"github.com/xtt28/neptune/database/models"
 	"github.com/xtt28/neptune/permissions"
-	"gorm.io/gorm"
 )
-
-func newBaseHandler(db *gorm.DB, p *player.Player) *BasePlayerHandler {
-	return &BasePlayerHandler{db: db, p: p}
-}
 
 func (m *BasePlayerHandler) HandleChat(ctx *event.Context, message *string) {
 	ctx.Cancel()
