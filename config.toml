@@ -7,7 +7,7 @@
 [Server]
   # The name as it shows up in the server list. Minecraft colour codes may be used in this name to format the
   # name of the server.
-  Name = "Dragonfly Server"
+  Name = "Neptune"
   # The message shown to players when the server is shutting down. The message may be left empty to direct
   # players to the server list directly.
   ShutdownMessage = "The server is shutting down."
