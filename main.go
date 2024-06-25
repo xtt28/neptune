@@ -9,6 +9,7 @@ import (
 	"github.com/pelletier/go-toml"
 	"github.com/sirupsen/logrus"
 	"github.com/xtt28/neptune/commands"
+	"github.com/xtt28/neptune/handlers"
 )
 
 func main() {
@@ -27,9 +28,9 @@ func main() {
 	srv.CloseOnProgramEnd()
 
 	commands.RegisterCommands()
-	
+
 	srv.Listen()
-	for srv.Accept(nil) {
+	for srv.Accept(handlers.PlayerHandler()) {
 	}
 }
 
