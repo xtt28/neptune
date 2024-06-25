@@ -8,6 +8,6 @@ import (
 func PlayerHandler(db *gorm.DB) func(*player.Player) {
 	return func(p *player.Player) {
 		handleJoin(db, p)
-		p.Handle(newChatHandler(p))
+		p.Handle(newChatHandler(db, p))
 	}
 }
