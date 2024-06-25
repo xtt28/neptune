@@ -7,6 +7,7 @@ import (
 	"github.com/df-mc/dragonfly/server/player"
 	"github.com/df-mc/dragonfly/server/player/chat"
 	"github.com/sandertv/gophertunnel/minecraft/text"
+	"github.com/TwiN/go-away"
 )
 
 type ChatHandler struct {
@@ -20,5 +21,8 @@ func newChatHandler(p *player.Player) *ChatHandler {
 
 func (m *ChatHandler) HandleChat(ctx *event.Context, message *string) {
 	ctx.Cancel()
+
+	*message = goaway.Censor(*message)
+
 	fmt.Fprint(chat.Global, text.Colourf("<grey>%v <dark-grey>»</dark-grey> %v</grey>", m.p.Name(), *message))
 }

@@ -5,6 +5,7 @@ go 1.22.0
 require github.com/df-mc/dragonfly v0.9.16
 
 require (
+	github.com/TwiN/go-away v1.6.13
 	github.com/brentp/intintmap v0.0.0-20190211203843-30dc0ade9af9 // indirect
 	github.com/cespare/xxhash/v2 v2.2.0 // indirect
 	github.com/df-mc/atomic v1.10.0 // indirect
