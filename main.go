@@ -35,6 +35,13 @@ func main() {
 	srv := conf.New()
 	srv.CloseOnProgramEnd()
 
+	srv.World().SetTime(18_000)
+	srv.World().StopTime()
+	
+	srv.World().StopWeatherCycle()
+	srv.World().StopRaining()
+	srv.World().StopThundering()
+
 	commands.RegisterCommands()
 
 	srv.Listen()
