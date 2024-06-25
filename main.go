@@ -18,7 +18,7 @@ func main() {
 	log.Formatter = &logrus.TextFormatter{ForceColors: true}
 	log.Level = logrus.DebugLevel
 
-	_, err := database.ConnectSQLite3("instancedata/data.sqlite3")
+	db, err := database.ConnectSQLite3("instancedata/data.sqlite3")
 	if err != nil {
 		log.Fatalf("could not connect to persistent data storage: %s", err.Error())
 	}
@@ -36,7 +36,7 @@ func main() {
 	commands.RegisterCommands()
 
 	srv.Listen()
-	for srv.Accept(handlers.PlayerHandler()) {
+	for srv.Accept(handlers.PlayerHandler(db)) {
 	}
 }
 
