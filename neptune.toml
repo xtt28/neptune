@@ -1,2 +1,3 @@
 [Locations]
 Spawn = [21.5, 132.0, 44.5]
+DmgThreshold = 85.0
