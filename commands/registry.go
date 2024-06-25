@@ -3,5 +3,5 @@ package commands
 import "github.com/df-mc/dragonfly/server/cmd"
 
 func RegisterCommands() {
-	cmd.Register(pingCommand)
+	cmd.Register(spawnCommand)
 }
