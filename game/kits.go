@@ -80,8 +80,28 @@ var Kits = []Kit{
 		Boots:    item.NewStack(item.Boots{Tier: item.ArmourTierNetherite{}}, 1),
 		Items: []item.Stack{
 			item.NewStack(item.Sword{Tier: item.ToolTierGold}, 1).
-				WithEnchantments(item.NewEnchantment(enchantment.Sharpness{}, 4)).
+				WithEnchantments(item.NewEnchantment(enchantment.Sharpness{}, 3)).
 				WithValue(ItemAbilityKey, JupiterAbilityValue),
+		},
+	},
+	{
+		Name:        "Ninja",
+		Description: "Speed past your adversaries",
+		Icon:        "textures/items/nether_star",
+		Helmet: item.NewStack(item.Helmet{Tier: item.ArmourTierIron{}}, 1).
+			WithEnchantments(item.NewEnchantment(enchantment.Protection{}, 1)),
+		Chestplate: item.NewStack(item.Chestplate{Tier: item.ArmourTierDiamond{}}, 1).
+			WithEnchantments(item.NewEnchantment(enchantment.ProjectileProtection{}, 2)),
+		Leggings: item.NewStack(item.Leggings{Tier: item.ArmourTierIron{}}, 1).
+			WithEnchantments(item.NewEnchantment(enchantment.Protection{}, 3)),
+		Boots: item.NewStack(item.Boots{Tier: item.ArmourTierNetherite{}}, 1).
+			WithEnchantments(item.NewEnchantment(enchantment.Protection{}, 2)),
+		Items: []item.Stack{
+			item.NewStack(item.Sword{Tier: item.ToolTierGold}, 1).
+				WithEnchantments(item.NewEnchantment(enchantment.Sharpness{}, 3)),
+		},
+		Effects: []effect.Effect{
+			effect.New(effect.Speed{}, 1, math.MaxInt64),
 		},
 	},
 }
