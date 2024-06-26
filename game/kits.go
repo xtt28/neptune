@@ -29,7 +29,14 @@ var Kits = []Kit{
 		Name:        "Archer",
 		Description: "Best for ranged combat",
 		Icon:        "textures/items/bow_standby",
-		Chestplate:  item.NewStack(item.Chestplate{Tier: item.ArmourTierIron{}}, 1),
+		Helmet: item.NewStack(item.Helmet{Tier: item.ArmourTierDiamond{}}, 1).
+			WithEnchantments(item.NewEnchantment(enchantment.Protection{}, 1)),
+		Chestplate: item.NewStack(item.Chestplate{Tier: item.ArmourTierChain{}}, 1).
+			WithEnchantments(item.NewEnchantment(enchantment.ProjectileProtection{}, 4)),
+		Leggings: item.NewStack(item.Leggings{Tier: item.ArmourTierDiamond{}}, 1).
+			WithEnchantments(item.NewEnchantment(enchantment.Protection{}, 2)),
+		Boots: item.NewStack(item.Boots{Tier: item.ArmourTierNetherite{}}, 1).
+			WithEnchantments(item.NewEnchantment(enchantment.Protection{}, 1)),
 		Items: []item.Stack{
 			item.NewStack(item.Sword{Tier: item.ToolTierIron}, 1),
 			item.NewStack(item.Bow{}, 1),
