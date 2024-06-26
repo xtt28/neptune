@@ -1,6 +1,7 @@
 package game
 
 import (
+	"github.com/df-mc/dragonfly/server/entity/effect"
 	"github.com/df-mc/dragonfly/server/item"
 	"github.com/df-mc/dragonfly/server/item/enchantment"
 	"github.com/df-mc/dragonfly/server/player"
@@ -54,6 +55,7 @@ type Kit struct {
 	Leggings    item.Stack
 	Boots       item.Stack
 	Items       []item.Stack
+	Effects     []effect.Effect
 }
 
 func (k Kit) GiveTo(target *player.Player) {
@@ -62,6 +64,9 @@ func (k Kit) GiveTo(target *player.Player) {
 
 	for i, v := range k.Items {
 		target.Inventory().SetItem(i, v)
+	}
+	for _, v := range k.Effects {
+		target.AddEffect(v)
 	}
 
 	target.Armour().Set(k.Helmet, k.Chestplate, k.Leggings, k.Boots)
