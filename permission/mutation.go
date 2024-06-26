@@ -9,8 +9,10 @@ import (
 	"github.com/xtt28/neptune/permission/permlvl"
 )
 
-func SetPermission(id uuid.UUID, level permlvl.PermissionLevel) {
-	PermCache[id] = level
+func SetPermission(id uuid.UUID, level permlvl.PermissionLevel, cache bool) {
+	if cache {
+		PermCache[id] = level
+	}
 	err := database.DB.Where(&model.Permission{Subject: id}).Update("level", level).Error
 	if err != nil {
 		log.Printf("could not set permission of %s: %s", id, err.Error())
