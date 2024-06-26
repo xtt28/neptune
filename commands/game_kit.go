@@ -6,7 +6,7 @@ import (
 	"github.com/xtt28/neptune/menu"
 )
 
-var kitCommand = cmd.New("kits", "Shows you a list of available kits.", []string{}, kitCommandExec{})
+var kitCommand = cmd.New("kits", "Shows you a list of available kits.", []string{"kit"}, kitCommandExec{})
 
 type kitCommandExec struct{}
 
