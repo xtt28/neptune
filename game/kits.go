@@ -25,7 +25,8 @@ var Kits = []Kit{
 		Boots: item.NewStack(item.Boots{Tier: item.ArmourTierNetherite{}}, 1).
 			WithEnchantments(item.NewEnchantment(enchantment.Protection{}, 2)),
 		Items: []item.Stack{
-			item.NewStack(item.Sword{Tier: item.ToolTierNetherite}, 1),
+			item.NewStack(item.Sword{Tier: item.ToolTierNetherite}, 1).
+				WithEnchantments(item.NewEnchantment(enchantment.Sharpness{}, 2)),
 		},
 	},
 	{
@@ -41,8 +42,10 @@ var Kits = []Kit{
 		Boots: item.NewStack(item.Boots{Tier: item.ArmourTierNetherite{}}, 1).
 			WithEnchantments(item.NewEnchantment(enchantment.Protection{}, 1)),
 		Items: []item.Stack{
-			item.NewStack(item.Sword{Tier: item.ToolTierIron}, 1),
-			item.NewStack(item.Bow{}, 1),
+			item.NewStack(item.Sword{Tier: item.ToolTierIron}, 1).
+				WithEnchantments(item.NewEnchantment(enchantment.Sharpness{}, 1)),
+			item.NewStack(item.Bow{}, 1).
+				WithEnchantments(item.NewEnchantment(enchantment.Power{}, 3)),
 			item.NewStack(item.Arrow{}, 32),
 		},
 	},
