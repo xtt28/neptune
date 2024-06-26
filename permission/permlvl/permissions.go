@@ -1,4 +1,4 @@
-package permission
+package permlvl
 
 type PermissionLevel uint
 

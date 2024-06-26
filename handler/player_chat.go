@@ -7,8 +7,8 @@ import (
 	"github.com/df-mc/dragonfly/server/event"
 	"github.com/df-mc/dragonfly/server/player/chat"
 	"github.com/sandertv/gophertunnel/minecraft/text"
-	"github.com/xtt28/neptune/database/model"
 	"github.com/xtt28/neptune/permission"
+	"github.com/xtt28/neptune/permission/permlvl"
 )
 
 func (m *BasePlayerHandler) HandleChat(ctx *event.Context, message *string) {
@@ -16,6 +16,6 @@ func (m *BasePlayerHandler) HandleChat(ctx *event.Context, message *string) {
 
 	*message = goaway.Censor(*message)
 
-	format := permission.LevelToChatFormat[model.PermLevel(m.db, m.p.UUID())]
+	format := permlvl.LevelToChatFormat[permission.PermLevel(m.db, m.p.UUID())]
 	fmt.Fprint(chat.Global, text.Colourf(format, m.p.Name(), *message))
 }
