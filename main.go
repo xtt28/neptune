@@ -8,10 +8,10 @@ import (
 	"github.com/df-mc/dragonfly/server/player/chat"
 	"github.com/pelletier/go-toml"
 	"github.com/sirupsen/logrus"
-	"github.com/xtt28/neptune/commands"
+	"github.com/xtt28/neptune/command"
 	"github.com/xtt28/neptune/config"
 	"github.com/xtt28/neptune/database"
-	"github.com/xtt28/neptune/handlers"
+	"github.com/xtt28/neptune/handler"
 )
 
 func main() {
