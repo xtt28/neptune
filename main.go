@@ -45,7 +45,7 @@ func main() {
 	commands.RegisterCommands()
 
 	srv.Listen()
-	for srv.Accept(handlers.PlayerHandler(db)) {
+	for srv.Accept(handler.PlayerHandler(db)) {
 	}
 }
 

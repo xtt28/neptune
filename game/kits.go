@@ -68,6 +68,22 @@ var Kits = []Kit{
 			effect.New(effect.Slowness{}, 1, math.MaxInt64),
 		},
 	},
+	{
+		Name:        "Jupiter",
+		Description: "Attack enemies with lightning",
+		Icon:        "textures/items/lightning_rod",
+		Helmet: item.NewStack(item.Helmet{Tier: item.ArmourTierIron{}}, 1).
+			WithEnchantments(item.NewEnchantment(enchantment.Protection{}, 1)),
+		Chestplate: item.NewStack(item.Chestplate{Tier: item.ArmourTierChain{}}, 1).
+			WithEnchantments(item.NewEnchantment(enchantment.Protection{}, 3)),
+		Leggings: item.NewStack(item.Leggings{Tier: item.ArmourTierDiamond{}}, 1),
+		Boots:    item.NewStack(item.Boots{Tier: item.ArmourTierNetherite{}}, 1),
+		Items: []item.Stack{
+			item.NewStack(item.Sword{Tier: item.ToolTierGold}, 1).
+				WithEnchantments(item.NewEnchantment(enchantment.Sharpness{}, 4)).
+				WithValue(ItemAbilityKey, JupiterAbilityValue),
+		},
+	},
 }
 
 type Kit struct {
