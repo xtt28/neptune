@@ -1,3 +1,4 @@
 [Locations]
 Spawn = [21.5, 132.0, 44.5]
 DmgThreshold = 85.0
+DealerCoords = [14.5, 130.0, 35.5]

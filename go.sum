@@ -12,6 +12,8 @@ github.com/df-mc/dragonfly v0.9.16 h1:Ai3JfNrqly6mTxdk/u3b448i1nGCxYMLWCOg+zXJu/
 github.com/df-mc/dragonfly v0.9.16/go.mod h1:UX+YPQvGWdZj5PL2th3uIeeWNs0ZmF9aYl8eQQjhHm4=
 github.com/df-mc/goleveldb v1.1.9 h1:ihdosZyy5jkQKrxucTQmN90jq/2lUwQnJZjIYIC/9YU=
 github.com/df-mc/goleveldb v1.1.9/go.mod h1:+NHCup03Sci5q84APIA21z3iPZCuk6m6ABtg4nANCSk=
+github.com/df-mc/npc v1.0.4 h1:oANT7jOPlRgBoXBijH8r7BFl9btPaJEvO8wq150w0OE=
+github.com/df-mc/npc v1.0.4/go.mod h1:mNgbn4993NDgTq2QoffR+aCMZan4bBAvGNN125eAJng=
 github.com/df-mc/worldupgrader v1.0.15 h1:kR/nYWQbFvmR5LqPncpBXtXKGyiRBPc9NPkBKlLSAIk=
 github.com/df-mc/worldupgrader v1.0.15/go.mod h1:tsSOLTRm9mpG7VHvYpAjjZrkRHWmSbKZAm9bOLNnlDk=
 github.com/fsnotify/fsnotify v1.4.7/go.mod h1:jwhsz4b93w/PPRr/qN1Yymfu8t87LnFCMoQvtojpjFo=
