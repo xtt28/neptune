@@ -71,7 +71,7 @@ var Kits = []Kit{
 	{
 		Name:        "Jupiter",
 		Description: "Attack enemies with lightning",
-		Icon:        "textures/items/lightning_rod",
+		Icon:        "textures/blocks/lightning_rod",
 		Helmet: item.NewStack(item.Helmet{Tier: item.ArmourTierIron{}}, 1).
 			WithEnchantments(item.NewEnchantment(enchantment.Protection{}, 1)),
 		Chestplate: item.NewStack(item.Chestplate{Tier: item.ArmourTierChain{}}, 1).
