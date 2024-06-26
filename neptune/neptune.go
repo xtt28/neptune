@@ -11,6 +11,7 @@ import (
 	"github.com/xtt28/neptune/command"
 	"github.com/xtt28/neptune/config"
 	"github.com/xtt28/neptune/database"
+	"github.com/xtt28/neptune/game"
 	"github.com/xtt28/neptune/handler"
 )
 
@@ -47,6 +48,8 @@ func Start() {
 	Server.World().StopThundering()
 
 	command.RegisterCommands(Server)
+
+	game.SpawnDealer(Server.World())
 
 	Server.Listen()
 	for Server.Accept(handler.PlayerHandler(db, Server)) {
