@@ -12,7 +12,8 @@ var Kits = []Kit{
 		Name: "Soldier",
 		Description: "Best for melee combat",
 		Icon: "textures/items/netherite_sword",
-		Chestplate: item.NewStack(item.Chestplate{Tier: item.ArmourTierDiamond{}}, 1),
+		Chestplate: item.NewStack(item.Chestplate{Tier: item.ArmourTierIron{}}, 1),
+		Leggings: item.NewStack(item.Leggings{Tier: item.ArmourTierDiamond{}}, 1),
 		Items: []item.Stack{
 			item.NewStack(item.Sword{Tier: item.ToolTierNetherite}, 1),
 		},
@@ -42,11 +43,11 @@ type Kit struct {
 }
 
 func (k Kit) GiveTo(target *player.Player) {
-	inv := target.Inventory()
-	inv.Close()
-	inv.Clear()
-	for _, v := range k.Items {
-		inv.AddItem(v)
+	target.Inventory().Clear()
+	target.Armour().Clear()
+
+	for i, v := range k.Items {
+		target.Inventory().SetItem(i, v)
 	}
 	
 	target.Armour().Set(k.Helmet, k.Chestplate, k.Leggings, k.Boots)
