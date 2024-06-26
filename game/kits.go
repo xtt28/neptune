@@ -1,6 +1,8 @@
 package game
 
 import (
+	"math"
+
 	"github.com/df-mc/dragonfly/server/entity/effect"
 	"github.com/df-mc/dragonfly/server/item"
 	"github.com/df-mc/dragonfly/server/item/enchantment"
@@ -23,7 +25,7 @@ var Kits = []Kit{
 		Boots: item.NewStack(item.Boots{Tier: item.ArmourTierNetherite{}}, 1).
 			WithEnchantments(item.NewEnchantment(enchantment.Protection{}, 2)),
 		Items: []item.Stack{
-			item.NewStack(item.Sword{Tier: item.ToolTierNetherite}, 2),
+			item.NewStack(item.Sword{Tier: item.ToolTierNetherite}, 1),
 		},
 	},
 	{
@@ -42,6 +44,25 @@ var Kits = []Kit{
 			item.NewStack(item.Sword{Tier: item.ToolTierIron}, 1),
 			item.NewStack(item.Bow{}, 1),
 			item.NewStack(item.Arrow{}, 32),
+		},
+	},
+	{
+		Name:        "Tank",
+		Description: "Best for withstanding damage",
+		Icon:        "textures/items/netherite_chestplate",
+		Helmet: item.NewStack(item.Helmet{Tier: item.ArmourTierGold{}}, 1).
+			WithEnchantments(item.NewEnchantment(enchantment.Protection{}, 3)),
+		Chestplate: item.NewStack(item.Chestplate{Tier: item.ArmourTierNetherite{}}, 1).
+			WithEnchantments(item.NewEnchantment(enchantment.Protection{}, 1)),
+		Leggings: item.NewStack(item.Leggings{Tier: item.ArmourTierDiamond{}}, 1).
+			WithEnchantments(item.NewEnchantment(enchantment.Protection{}, 2)),
+		Boots: item.NewStack(item.Boots{Tier: item.ArmourTierDiamond{}}, 1),
+		Items: []item.Stack{
+			item.NewStack(item.Sword{Tier: item.ToolTierNetherite}, 1).
+				WithEnchantments(item.NewEnchantment(enchantment.Sharpness{}, 1)),
+		},
+		Effects: []effect.Effect{
+			effect.New(effect.Slowness{}, 1, math.MaxInt64),
 		},
 	},
 }
