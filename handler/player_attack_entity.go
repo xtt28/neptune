@@ -5,12 +5,13 @@ import (
 
 	"github.com/df-mc/dragonfly/server/entity"
 	"github.com/df-mc/dragonfly/server/event"
+	"github.com/df-mc/dragonfly/server/player"
 	"github.com/df-mc/dragonfly/server/world"
 	"github.com/xtt28/neptune/game"
 )
 
 func (m *BasePlayerHandler) HandleAttackEntity(ctx *event.Context, e world.Entity, force, height *float64, critical *bool) {
-	if _, ok := e.(entity.Living); !ok {
+	if _, ok := e.(*player.Player); !ok {
 		return
 	}
 
