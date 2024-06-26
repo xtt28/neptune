@@ -2,6 +2,7 @@ package game
 
 import (
 	"github.com/df-mc/dragonfly/server/item"
+	"github.com/df-mc/dragonfly/server/item/enchantment"
 	"github.com/df-mc/dragonfly/server/player"
 	"github.com/df-mc/dragonfly/server/player/form"
 	"github.com/sandertv/gophertunnel/minecraft/text"
@@ -9,20 +10,26 @@ import (
 
 var Kits = []Kit{
 	{
-		Name: "Soldier",
+		Name:        "Soldier",
 		Description: "Best for melee combat",
-		Icon: "textures/items/netherite_sword",
-		Chestplate: item.NewStack(item.Chestplate{Tier: item.ArmourTierIron{}}, 1),
-		Leggings: item.NewStack(item.Leggings{Tier: item.ArmourTierDiamond{}}, 1),
+		Icon:        "textures/items/netherite_sword",
+		Helmet: item.NewStack(item.Helmet{Tier: item.ArmourTierGold{}}, 1).
+			WithEnchantments(item.NewEnchantment(enchantment.Protection{}, 1)),
+		Chestplate: item.NewStack(item.Chestplate{Tier: item.ArmourTierIron{}}, 1).
+			WithEnchantments(item.NewEnchantment(enchantment.Protection{}, 1)),
+		Leggings: item.NewStack(item.Leggings{Tier: item.ArmourTierDiamond{}}, 1).
+			WithEnchantments(item.NewEnchantment(enchantment.Protection{}, 1)),
+		Boots: item.NewStack(item.Boots{Tier: item.ArmourTierNetherite{}}, 1).
+			WithEnchantments(item.NewEnchantment(enchantment.Protection{}, 2)),
 		Items: []item.Stack{
-			item.NewStack(item.Sword{Tier: item.ToolTierNetherite}, 1),
+			item.NewStack(item.Sword{Tier: item.ToolTierNetherite}, 2),
 		},
 	},
 	{
-		Name: "Archer",
+		Name:        "Archer",
 		Description: "Best for ranged combat",
-		Icon: "textures/items/bow_standby",
-		Chestplate: item.NewStack(item.Chestplate{Tier: item.ArmourTierIron{}}, 1),
+		Icon:        "textures/items/bow_standby",
+		Chestplate:  item.NewStack(item.Chestplate{Tier: item.ArmourTierIron{}}, 1),
 		Items: []item.Stack{
 			item.NewStack(item.Sword{Tier: item.ToolTierIron}, 1),
 			item.NewStack(item.Bow{}, 1),
@@ -32,14 +39,14 @@ var Kits = []Kit{
 }
 
 type Kit struct {
-	Name string
+	Name        string
 	Description string
-	Icon string
-	Helmet item.Stack
-	Chestplate item.Stack
-	Leggings item.Stack
-	Boots item.Stack
-	Items []item.Stack
+	Icon        string
+	Helmet      item.Stack
+	Chestplate  item.Stack
+	Leggings    item.Stack
+	Boots       item.Stack
+	Items       []item.Stack
 }
 
 func (k Kit) GiveTo(target *player.Player) {
@@ -49,7 +56,7 @@ func (k Kit) GiveTo(target *player.Player) {
 	for i, v := range k.Items {
 		target.Inventory().SetItem(i, v)
 	}
-	
+
 	target.Armour().Set(k.Helmet, k.Chestplate, k.Leggings, k.Boots)
 }
 
