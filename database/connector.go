@@ -6,6 +6,8 @@ import (
 	"gorm.io/gorm"
 )
 
+var DB *gorm.DB
+
 func ConnectSQLite3(filename string) (conn *gorm.DB, err error) {
 	conn, err = gorm.Open(sqlite.Open(filename), &gorm.Config{TranslateError: true})
 	conn.AutoMigrate(&model.Permission{})

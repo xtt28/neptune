@@ -13,8 +13,16 @@ func SetPermission(id uuid.UUID, level permlvl.PermissionLevel, cache bool) {
 	if cache {
 		PermCache[id] = level
 	}
-	err := database.DB.Where(&model.Permission{Subject: id}).Update("level", level).Error
+	dest := &model.Permission{Subject: id}
+	err := database.DB.FirstOrCreate(dest).Error
+
 	if err != nil {
-		log.Printf("could not set permission of %s: %s", id, err.Error())
+		log.Printf("could not get/create permission of %s: %s", id, err.Error())
+	}
+
+	dest.Level = level
+	err = database.DB.Save(dest).Error
+	if err != nil {
+		log.Printf("could not save permission of %s: %s", id, err.Error())
 	}
 }

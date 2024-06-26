@@ -26,6 +26,7 @@ func Start() {
 	if err != nil {
 		Logger.Fatalf("could not connect to persistent data storage: %s", err.Error())
 	}
+	database.DB = db
 
 	chat.Global.Subscribe(chat.StdoutSubscriber{})
 
@@ -45,7 +46,7 @@ func Start() {
 	Server.World().StopRaining()
 	Server.World().StopThundering()
 
-	commands.RegisterCommands()
+	command.RegisterCommands(Server)
 
 	Server.Listen()
 	for Server.Accept(handler.PlayerHandler(db, Server)) {
