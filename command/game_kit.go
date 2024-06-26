@@ -3,7 +3,7 @@ package commands
 import (
 	"github.com/df-mc/dragonfly/server/cmd"
 	"github.com/df-mc/dragonfly/server/player"
-	"github.com/xtt28/neptune/menu"
+	"github.com/xtt28/neptune/form"
 )
 
 var kitCommand = cmd.New("kits", "Shows you a list of available kits.", []string{"kit"}, kitCommandExec{})
@@ -16,5 +16,5 @@ func (c kitCommandExec) Run(source cmd.Source, output *cmd.Output) {
 		return
 	}
 
-	menu.ShowKitSelector(p)
+	form.ShowKitSelector(p)
 }

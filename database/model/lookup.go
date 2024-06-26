@@ -1,17 +1,17 @@
-package models
+package model
 
 import (
 	"errors"
 	"log"
 
 	"github.com/google/uuid"
-	"github.com/xtt28/neptune/permissions"
+	"github.com/xtt28/neptune/permission"
 	"gorm.io/gorm"
 )
 
-var PermCache = map[uuid.UUID]permissions.PermissionLevel{}
+var PermCache = map[uuid.UUID]permission.PermissionLevel{}
 
-func PermLevel(db *gorm.DB, playerID uuid.UUID) permissions.PermissionLevel {
+func PermLevel(db *gorm.DB, playerID uuid.UUID) permission.PermissionLevel {
 	cacheLvl, ok := PermCache[playerID]
 	if ok {
 		return cacheLvl
@@ -22,16 +22,16 @@ func PermLevel(db *gorm.DB, playerID uuid.UUID) permissions.PermissionLevel {
 
 	if err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
-			err := db.Create(&Permission{Subject: playerID, Level: permissions.LvlDefault}).Error
+			err := db.Create(&Permission{Subject: playerID, Level: permission.LvlDefault}).Error
 			if err != nil {
 				log.Printf("could not create permissions for %s: %s", playerID, err.Error())
 			}
-			PermCache[playerID] = permissions.LvlDefault
+			PermCache[playerID] = permission.LvlDefault
 		} else {
 			log.Printf("could not get user permissions for %s: %s", playerID, err.Error())
 		}
 
-		return permissions.LvlDefault
+		return permission.LvlDefault
 	}
 
 	PermCache[playerID] = perm.Level

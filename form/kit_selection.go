@@ -1,4 +1,4 @@
-package menu
+package form
 
 import (
 	"github.com/df-mc/dragonfly/server/player"
