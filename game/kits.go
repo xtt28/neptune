@@ -8,13 +8,12 @@ import (
 	"github.com/df-mc/dragonfly/server/item/enchantment"
 	"github.com/df-mc/dragonfly/server/player"
 	"github.com/df-mc/dragonfly/server/player/form"
-	"github.com/sandertv/gophertunnel/minecraft/text"
 )
 
 var Kits = []Kit{
 	{
 		Name:        "Soldier",
-		Description: "Best for melee combat",
+		Description: "Melee expert with superior combat skills.",
 		Icon:        "textures/items/netherite_sword",
 		Helmet: item.NewStack(item.Helmet{Tier: item.ArmourTierGold{}}, 1).
 			WithEnchantments(item.NewEnchantment(enchantment.Protection{}, 1)),
@@ -31,7 +30,7 @@ var Kits = []Kit{
 	},
 	{
 		Name:        "Archer",
-		Description: "Best for ranged combat",
+		Description: "Ranged specialist with precise attacks.",
 		Icon:        "textures/items/bow_standby",
 		Helmet: item.NewStack(item.Helmet{Tier: item.ArmourTierDiamond{}}, 1).
 			WithEnchantments(item.NewEnchantment(enchantment.Protection{}, 1)),
@@ -51,7 +50,7 @@ var Kits = []Kit{
 	},
 	{
 		Name:        "Tank",
-		Description: "Best for withstanding damage",
+		Description: "Durable tank with high damage resistance.",
 		Icon:        "textures/items/netherite_chestplate",
 		Helmet: item.NewStack(item.Helmet{Tier: item.ArmourTierGold{}}, 1).
 			WithEnchantments(item.NewEnchantment(enchantment.Protection{}, 3)),
@@ -70,7 +69,7 @@ var Kits = []Kit{
 	},
 	{
 		Name:        "Jupiter",
-		Description: "Attack enemies with lightning",
+		Description: "Lightning wielder with powerful strikes.",
 		Icon:        "textures/blocks/lightning_rod",
 		Helmet: item.NewStack(item.Helmet{Tier: item.ArmourTierIron{}}, 1).
 			WithEnchantments(item.NewEnchantment(enchantment.Protection{}, 1)),
@@ -86,7 +85,7 @@ var Kits = []Kit{
 	},
 	{
 		Name:        "Ninja",
-		Description: "Speed past your adversaries",
+		Description: "Fast assassin with unmatched speed.",
 		Icon:        "textures/items/nether_star",
 		Helmet: item.NewStack(item.Helmet{Tier: item.ArmourTierIron{}}, 1).
 			WithEnchantments(item.NewEnchantment(enchantment.Protection{}, 1)),
@@ -133,5 +132,5 @@ func (k Kit) GiveTo(target *player.Player) {
 }
 
 func (k Kit) ToButton() form.Button {
-	return form.NewButton(text.Colourf("<bold>%s</bold>\n%s", k.Name, k.Description), k.Icon)
+	return form.NewButton(k.Name, k.Icon)
 }
