@@ -7,5 +7,5 @@ import (
 
 type Permission struct {
 	Subject uuid.UUID `gorm:"uniqueIndex"`
-	Level permissions.PermissionLevel
+	Level   permissions.PermissionLevel
 }

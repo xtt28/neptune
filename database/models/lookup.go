@@ -30,7 +30,7 @@ func PermLevel(db *gorm.DB, playerID uuid.UUID) permissions.PermissionLevel {
 		} else {
 			log.Printf("could not get user permissions for %s: %s", playerID, err.Error())
 		}
-		
+
 		return permissions.LvlDefault
 	}
 

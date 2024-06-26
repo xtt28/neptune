@@ -15,7 +15,7 @@ type NeptuneConfig struct {
 }
 
 type LocationsConfig struct {
-	Spawn [3]float64
+	Spawn        [3]float64
 	DmgThreshold float64
 }
 

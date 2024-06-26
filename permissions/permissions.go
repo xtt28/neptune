@@ -10,7 +10,7 @@ const (
 	LvlOwner     PermissionLevel = 350
 )
 
-var LevelToName = map[PermissionLevel]string {
+var LevelToName = map[PermissionLevel]string{
 	100: "Default",
 	150: "Plus",
 	250: "Moderator",
@@ -18,7 +18,7 @@ var LevelToName = map[PermissionLevel]string {
 	350: "Owner",
 }
 
-var LevelToChatFormat = map[PermissionLevel]string {
+var LevelToChatFormat = map[PermissionLevel]string{
 	100: "<grey>%v <dark-grey>»</dark-grey> %v</grey>",
 	150: "<diamond><bold>+</bold> %v</diamond> <dark-grey>»</dark-grey> <quartz>%v</quartz>",
 	250: "<emerald><bold>MOD</bold> %v</emerald> <dark-grey>»</dark-grey> <quartz>%v</quartz>",
