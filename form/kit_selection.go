@@ -3,6 +3,7 @@ package form
 import (
 	"github.com/df-mc/dragonfly/server/player"
 	"github.com/df-mc/dragonfly/server/player/form"
+	"github.com/sandertv/gophertunnel/minecraft/text"
 	"github.com/xtt28/neptune/game/kit"
 )
 
@@ -39,5 +40,7 @@ func (h KitSelectorMenuHandler) Submit(submitter form.Submitter, pressed form.Bu
 		}
 	}
 
-	kit.Kits[index].GiveTo(p)
+	selectedKit := kit.Kits[index]
+	selectedKit.GiveTo(p)
+	p.Message(text.Colourf("<diamond><bold>SELECTED</bold></diamond> <grey>You choose the <diamond>%s</diamond> kit. Good luck!</grey>", selectedKit.Name))
 }
