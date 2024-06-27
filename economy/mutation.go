@@ -22,7 +22,7 @@ func AddBits(target *player.Player, amount uint64) {
 	}
 	
 	if amount > 0 {
-		target.Message(text.Colourf("<grey><aqua>+%d<aqua> bits</grey>", amount))
+		target.Message(text.Colourf("<grey><aqua>+%d</aqua> bits</grey>", amount))
 	}
 	scoreboard.Render(target, new)
 }
