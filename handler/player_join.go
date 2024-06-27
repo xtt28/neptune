@@ -7,7 +7,6 @@ import (
 	"github.com/xtt28/neptune/economy"
 	"github.com/xtt28/neptune/game"
 	"github.com/xtt28/neptune/scoreboard"
-	"gorm.io/gorm"
 )
 
 func handleJoin(p *player.Player) {
