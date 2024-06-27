@@ -10,7 +10,7 @@ import (
 
 func Render(p *player.Player, balance uint64) {
 	s := scoreboard.New(text.Colourf("<diamond><bold>NEPTUNE</bold></diamond>"))
-	s.Set(0, text.Colourf("<grey>%s</grey>", time.Now().Format("01.02.2006")))
+	s.Set(0, text.Colourf("<grey>%s</grey>", time.Now().Format("02.01.2006")))
 	s.Set(1, text.Colourf("<white>  </white>"))
 	s.Set(2, text.Colourf("<white><bold> Stats</bold></white>"))
 	s.Set(3, text.Colourf("<dark-grey> » </dark-grey><diamond>Kills</diamond> <white>0</white>"))
