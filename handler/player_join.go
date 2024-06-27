@@ -10,7 +10,7 @@ import (
 	"gorm.io/gorm"
 )
 
-func handleJoin(db *gorm.DB, p *player.Player) {
+func handleJoin(p *player.Player) {
 	p.EnableInstantRespawn()
 	scoreboard.Render(p, economy.GetBitsBalance(p))
 	

@@ -8,7 +8,7 @@ import (
 
 func PlayerHandler(db *gorm.DB, srv *server.Server) func(*player.Player) {
 	return func(p *player.Player) {
-		handleJoin(db, p)
+		handleJoin(p)
 		p.Handle(newBaseHandler(db, srv, p))
 	}
 }
