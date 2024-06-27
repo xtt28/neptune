@@ -20,7 +20,7 @@ func SpawnDealer(world *world.World) {
 	skin := npc.MustSkin(npc.MustParseTexture("skins/dealer.png"), npc.DefaultModel)
 
 	settings := npc.Settings{
-		Name: text.Colourf("<dark-grey><obfuscated>$$</obfuscated></dark-grey> <lapis><bold>THE DEALER</bold></lapis> <dark-grey><obfuscated>$$</obfuscated></dark-grey>\n<gold>Gear and perks</gold>"),
+		Name: text.Colourf("<dark-grey><obfuscated>$$</obfuscated></dark-grey> <aqua><bold>THE DEALER</bold></aqua> <dark-grey><obfuscated>$$</obfuscated></dark-grey>\n<gold>Gear and perks</gold>"),
 		Scale: 1,
 		Immobile: true,
 		MainHand: item.NewStack(item.GoldIngot{}, 1),
