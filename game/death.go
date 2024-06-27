@@ -8,6 +8,7 @@ import (
 	"github.com/df-mc/dragonfly/server/player/chat"
 	"github.com/sandertv/gophertunnel/minecraft/text"
 	"github.com/xtt28/neptune/economy"
+	"github.com/xtt28/neptune/stats"
 )
 
 func RecordKill(attacker, target *player.Player) {
@@ -15,9 +16,12 @@ func RecordKill(attacker, target *player.Player) {
 	fmt.Fprint(chat.Global, text.Colourf("<dark-grey>»</dark-grey> <emerald>%s</emerald> <grey>killed</grey> <redstone>%s</redstone> <dark-grey>(%.1f )</dark-grey>", attacker.Name(), target.Name(), attacker.Health() / 2))
 	economy.AddBits(attacker, uint64(rand.Intn(6) + 5))
 
+	stats.AddKill(attacker)
+	stats.AddDeath(target)
 	Combat.Clear(target)
 }
 
 func RecordMiscDeath(victim *player.Player) {
 	fmt.Fprint(chat.Global, text.Colourf("<dark-grey>»</dark-grey> <emerald>%s</emerald> <grey>died</grey>", victim.Name()))
+	stats.AddDeath(victim)
 }

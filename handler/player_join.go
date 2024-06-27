@@ -4,14 +4,15 @@ import (
 	"github.com/df-mc/dragonfly/server/player"
 	"github.com/df-mc/dragonfly/server/player/title"
 	"github.com/sandertv/gophertunnel/minecraft/text"
-	"github.com/xtt28/neptune/economy"
+	"github.com/xtt28/neptune/economy/econlookup"
 	"github.com/xtt28/neptune/game"
 	"github.com/xtt28/neptune/scoreboard"
+	"github.com/xtt28/neptune/stats"
 )
 
 func handleJoin(p *player.Player) {
 	p.EnableInstantRespawn()
-	scoreboard.Render(p, economy.GetBitsBalance(p))
+	scoreboard.Render(p, stats.GetStats(p), econlookup.GetBitsBalance(p))
 	
 	game.SendToSpawn(p, false)
 	
