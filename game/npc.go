@@ -8,6 +8,7 @@ import (
 	"github.com/go-gl/mathgl/mgl64"
 	"github.com/sandertv/gophertunnel/minecraft/text"
 	"github.com/xtt28/neptune/config"
+	"github.com/xtt28/neptune/form"
 )
 
 func SpawnDealer(world *world.World) {
@@ -28,6 +29,6 @@ func SpawnDealer(world *world.World) {
 	}
 
 	npc.Create(settings, world, func(p *player.Player) {
-		p.Message(text.Colourf("<red><bold>UNSUPPORTED</bold></red> <grey>This feature hasn't been implemented yet.</grey>"))
+		form.ShowDealerIntermediate(p)
 	})
 }

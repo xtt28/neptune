@@ -1,4 +1,4 @@
-package game
+package kit
 
 import (
 	"math"

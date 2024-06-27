@@ -3,12 +3,12 @@ package form
 import (
 	"github.com/df-mc/dragonfly/server/player"
 	"github.com/df-mc/dragonfly/server/player/form"
-	"github.com/xtt28/neptune/game"
+	"github.com/xtt28/neptune/game/kit"
 )
 
 func ShowKitSelector(p *player.Player) {
 	kitButtons := []form.Button{}
-	for _, kit := range game.Kits {
+	for _, kit := range kit.Kits {
 		kitButtons = append(kitButtons, kit.ToButton())
 	}
 	f := form.
@@ -26,7 +26,7 @@ func (h KitSelectorMenuHandler) Submit(submitter form.Submitter, pressed form.Bu
 	}
 
 	kitButtons := []form.Button{}
-	for _, kit := range game.Kits {
+	for _, kit := range kit.Kits {
 		kitButtons = append(kitButtons, kit.ToButton())
 	}
 
@@ -39,5 +39,5 @@ func (h KitSelectorMenuHandler) Submit(submitter form.Submitter, pressed form.Bu
 		}
 	}
 
-	game.Kits[index].GiveTo(p)
+	kit.Kits[index].GiveTo(p)
 }

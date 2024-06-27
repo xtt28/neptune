@@ -1,4 +1,4 @@
-package game
+package kit
 
 const ItemAbilityKey = "NXItemAbility"
 
