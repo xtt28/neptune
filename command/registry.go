@@ -8,6 +8,7 @@ import (
 func RegisterCommands(srv *server.Server) {
 	cmd.Register(spawnCommand)
 	cmd.Register(kitCommand)
+	cmd.Register(statsCommand)
 	
 	cmd.Register(cmd.New("permissions", "Manage user permissions on the server.", []string{"perms", "rank"}, permsSetCommandExec{srv: srv}))
 }
