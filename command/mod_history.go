@@ -40,7 +40,7 @@ func (c modHistoryCommandExec) Run(source cmd.Source, output *cmd.Output) {
 	}
 
 	target := new([]*model.Punishment)
-	res := database.DB.Order("created_at DESC").
+	res := database.DB.Order("created_at").
 		Where(&model.Punishment{Subject: subject}).
 		Find(&target)
 
@@ -51,7 +51,7 @@ func (c modHistoryCommandExec) Run(source cmd.Source, output *cmd.Output) {
 	}
 
 	bob := strings.Builder{}
-	bob.WriteString(text.Colourf("\n<aqua>Enforcement history for <diamond>%s</diamond> <grey>(descending)</grey></aqua>\n", c.Subject))
+	bob.WriteString(text.Colourf("\n<aqua>Enforcement history for <diamond>%s</diamond> <grey>(ascending)</grey></aqua>\n", c.Subject))
 	if len(*target) == 0 {
 		bob.WriteString(text.Colourf("<green>This player has never been punished</green>\n"))
 	}
