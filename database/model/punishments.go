@@ -9,6 +9,7 @@ import (
 )
 
 type Punishment struct {
+	ID        uint `gorm:"primaryKey"`
 	Issuer    uuid.UUID
 	Subject   uuid.UUID
 	Type      moderation.PunishmentType
