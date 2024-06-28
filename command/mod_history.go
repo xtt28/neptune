@@ -13,7 +13,6 @@ import (
 	"github.com/xtt28/neptune/database"
 	"github.com/xtt28/neptune/database/model"
 	"github.com/xtt28/neptune/lookup"
-	"github.com/xtt28/neptune/permission"
 	"github.com/xtt28/neptune/permission/permlvl"
 	"gorm.io/gorm"
 )
@@ -24,16 +23,10 @@ type modHistoryCommandExec struct {
 }
 
 func (c modHistoryCommandExec) Run(source cmd.Source, output *cmd.Output) {
-	p, ok := source.(*player.Player)
-	if !ok {
+	if !RequireAtLeast(source, output, permlvl.LvlModerator) {
 		return
 	}
-
-	permLvl := permission.PermLevel(database.DB, p.UUID())
-	if permLvl < permlvl.LvlModerator {
-		permission.SendGateMessage(output, permlvl.LvlModerator)
-		return
-	}
+	p := source.(*player.Player)
 
 	subject, _, err := lookup.GetOnlineOrOfflineUUID(database.DB, c.srv, c.Subject)
 	if err != nil {

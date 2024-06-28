@@ -27,16 +27,11 @@ type modKickCommandExec struct {
 }
 
 func (c modKickCommandExec) Run(source cmd.Source, output *cmd.Output) {
-	p, ok := source.(*player.Player)
-	if !ok {
+	if !RequireAtLeast(source, output, permlvl.LvlModerator) {
 		return
 	}
-
+	p := source.(*player.Player)
 	permLvl := permission.PermLevel(database.DB, p.UUID())
-	if permLvl < permlvl.LvlModerator {
-		permission.SendGateMessage(output, permlvl.LvlModerator)
-		return
-	}
 
 	subject, ok := lookup.GetOnlinePlayerCaseInsensitive(c.srv, c.Subject)
 	if !ok {

@@ -7,6 +7,7 @@ import (
 	"github.com/df-mc/dragonfly/server/player"
 	"github.com/sandertv/gophertunnel/minecraft/text"
 	"github.com/xtt28/neptune/lookup"
+	"github.com/xtt28/neptune/permission/permlvl"
 )
 
 type privateMessageCommandExec struct {
@@ -16,10 +17,10 @@ type privateMessageCommandExec struct {
 }
 
 func (c privateMessageCommandExec) Run(source cmd.Source, output *cmd.Output) {
-	p, ok := source.(*player.Player)
-	if !ok {
+	if !RequireAtLeast(source, output, permlvl.LvlDefault) {
 		return
 	}
+	p := source.(*player.Player)
 
 	target, ok := lookup.GetOnlinePlayerCaseInsensitive(c.srv, c.Target)
 	if !ok {

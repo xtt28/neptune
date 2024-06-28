@@ -7,7 +7,6 @@ import (
 
 	"github.com/df-mc/dragonfly/server"
 	"github.com/df-mc/dragonfly/server/cmd"
-	"github.com/df-mc/dragonfly/server/player"
 	"github.com/sandertv/gophertunnel/minecraft/text"
 	"github.com/xtt28/neptune/database"
 	"github.com/xtt28/neptune/lookup"
@@ -24,14 +23,7 @@ type permsSetCommandExec struct {
 }
 
 func (c permsSetCommandExec) Run(source cmd.Source, output *cmd.Output) {
-	p, ok := source.(*player.Player)
-	if !ok {
-		return
-	}
-
-	permLvl := permission.PermLevel(database.DB, p.UUID())
-	if permLvl < permlvl.LvlAdmin {
-		permission.SendGateMessage(output, permlvl.LvlAdmin)
+	if !RequireAtLeast(source, output, permlvl.LvlAdmin) {
 		return
 	}
 
