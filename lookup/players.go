@@ -44,3 +44,12 @@ func GetOfflineUUID(db *gorm.DB, username string) (uuid.UUID, error) {
 	}
 	return dest.UUID, nil
 }
+
+func OfflineUUIDToUsername(db *gorm.DB, id uuid.UUID) (string, error) {
+	var dest model.UserProfile
+	err := db.First(&dest, &model.UserProfile{UUID: id}).Error
+	if err != nil {
+		return "", err
+	}
+	return dest.LastUsername, nil
+}
