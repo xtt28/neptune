@@ -15,4 +15,5 @@ func RegisterCommands(srv *server.Server) {
 	cmd.Register(cmd.New("message", "Send a private message to someone else.", []string{"pm", "msg", "tell", "t", "w", "whisper"}, privateMessageCommandExec{srv: srv}))
 
 	cmd.Register(cmd.New("kick", "Disconnects a player from the server.", []string{}, modKickCommandExec{srv: srv}))
+	cmd.Register(cmd.New("history", "View a player's punishment history.", []string{}, modHistoryCommandExec{srv: srv}))
 }
