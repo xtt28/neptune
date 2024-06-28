@@ -1,16 +1,19 @@
 package command
 
 import (
+	"errors"
+	"log"
 	"strings"
 
 	"github.com/df-mc/dragonfly/server"
 	"github.com/df-mc/dragonfly/server/cmd"
 	"github.com/df-mc/dragonfly/server/player"
-	"github.com/google/uuid"
 	"github.com/sandertv/gophertunnel/minecraft/text"
 	"github.com/xtt28/neptune/database"
+	"github.com/xtt28/neptune/lookup"
 	"github.com/xtt28/neptune/permission"
 	"github.com/xtt28/neptune/permission/permlvl"
+	"gorm.io/gorm"
 )
 
 type permsSetCommandExec struct{
@@ -37,16 +40,16 @@ func (c permsSetCommandExec) Run(source cmd.Source, output *cmd.Output) {
 		output.Print(text.Colourf("<red>This permission level is not recognized</red>"))
 		return
 	}
-	player, ok := c.srv.PlayerByName(c.Subject)
-	if ok {
-		permission.SetPermission(player.UUID(), level, true)
-	} else {
-		parsedUUID, err := uuid.Parse(c.Subject)
-		if err != nil {
-			output.Print(text.Colourf("<red>For an offline player, specify a valid UUID</red>"))
-			return
+	id, _, err := lookup.GetOnlineOrOfflineUUID(database.DB, c.srv, strings.ToLower(c.Subject))
+	if err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			output.Print(text.Colourf("<red>This player has never played on Neptune.</red>"))
+		} else {
+			output.Print(text.Colourf("<red>An internal error occurred and we couldn't find this player. More info in console.</red>"))
+			log.Println(err.Error())
 		}
-		permission.SetPermission(parsedUUID, level, false)
+		return
 	}
-	output.Print(text.Colourf("<green>Done</green>"))
+	permission.SetPermission(id, level, true)
+	output.Print(text.Colourf("<green>Done!</green>"))
 }
