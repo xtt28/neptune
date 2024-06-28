@@ -14,6 +14,7 @@ import (
 	"github.com/xtt28/neptune/database/model"
 	"github.com/xtt28/neptune/lookup"
 	"github.com/xtt28/neptune/moderation"
+	"github.com/xtt28/neptune/moderation/punishments"
 	"github.com/xtt28/neptune/permission"
 	"github.com/xtt28/neptune/permission/permlvl"
 )
@@ -50,7 +51,9 @@ func modBaseRun(
 
 	subject, isOnline := lookup.GetOnlinePlayerCaseInsensitive(srv, sub)
 	var id uuid.UUID
-	if !isOnline {
+	if isOnline {
+		id = subject.UUID()
+	} else {
 		if pType == moderation.PunishmentTypeKick {
 			output.Print(text.Colourf("<red>That player is not online.</red>"))
 			return
@@ -83,17 +86,7 @@ func modBaseRun(
 		log.Println(res.Error.Error())
 	}
 	if isOnline {
-		if pType == moderation.PunishmentTypeKick {
-			subject.Disconnect(text.Colourf(messageFormats[moderation.PunishmentTypeKick], reason, record.ID))
-		} else if pType == moderation.PunishmentTypeBan {
-			var expiryStr string
-			if record.ExpiresAt.Valid {
-				expiryStr = record.ExpiresAt.Time.Format(time.RFC822)
-			} else {
-				expiryStr = "<red>PERMANENT</permanent>"
-			}
-			subject.Disconnect(text.Colourf(messageFormats[moderation.PunishmentTypeBan], expiryStr, reason, record.ID))
-		}
+		subject.Disconnect(punishments.GenerateMessage(*record))
 	}
 
 	output.Print(text.Colourf("<green>Punishment with case ID #%d successfully issued against %s</green>", record.ID, sub))

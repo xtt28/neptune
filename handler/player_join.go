@@ -3,6 +3,7 @@ package handler
 import (
 	"log"
 	"strings"
+	"time"
 
 	"github.com/df-mc/dragonfly/server/player"
 	"github.com/df-mc/dragonfly/server/player/title"
@@ -11,11 +12,20 @@ import (
 	"github.com/xtt28/neptune/database/model"
 	"github.com/xtt28/neptune/economy/econlookup"
 	"github.com/xtt28/neptune/game"
+	"github.com/xtt28/neptune/moderation"
+	"github.com/xtt28/neptune/moderation/punishments"
 	"github.com/xtt28/neptune/scoreboard"
 	"github.com/xtt28/neptune/stats"
 )
 
 func handleJoin(p *player.Player) {
+	activePuns := *punishments.GetActive(p, moderation.PunishmentTypeBan)
+	if len(activePuns) > 0 {
+		time.AfterFunc(35 * time.Millisecond, func() {
+			p.Disconnect(punishments.GenerateMessage(*activePuns[0]))
+		})
+	}
+
 	p.EnableInstantRespawn()
 	scoreboard.Render(p, stats.GetStats(p), econlookup.GetBitsBalance(p))
 
