@@ -27,6 +27,7 @@ func (c privateMessageCommandExec) Run(source cmd.Source, output *cmd.Output) {
 		return
 	}
 
-	target.Message(text.Colourf("<grey>From %s: %s</grey>", p.Name(), goaway.Censor(string(c.Message))))
-	target.Message(text.Colourf("<grey>To %s: %s</grey>", c.Target, goaway.Censor(string(c.Message))))
+	censored := goaway.Censor(string(c.Message))
+	target.Message(text.Colourf("<grey>From %s: %s</grey>", p.Name(), censored))
+	target.Message(text.Colourf("<grey>To %s: %s</grey>", c.Target, censored))
 }
