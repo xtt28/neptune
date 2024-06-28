@@ -9,13 +9,14 @@ import (
 	"gorm.io/gorm"
 )
 
-func GetOnlineOrOfflineUUID(db *gorm.DB, srv *server.Server, username string) (uuid.UUID, error) {
+func GetOnlineOrOfflineUUID(db *gorm.DB, srv *server.Server, username string) (id uuid.UUID, online bool, err error) {
 	p, ok := srv.PlayerByName(username)
 	if ok {
-		return p.UUID(), nil
+		return p.UUID(), true, nil
 	}
 
-	return GetOfflineUUID(db, username)
+	id, err = GetOfflineUUID(db, username)
+	return id, false, err
 }
 
 func GetOfflineUUID(db *gorm.DB, username string) (uuid.UUID, error) {
