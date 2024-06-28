@@ -1,12 +1,16 @@
 package command
 
 import (
+	"log"
+
 	"github.com/df-mc/dragonfly/server"
 	"github.com/df-mc/dragonfly/server/cmd"
 	"github.com/df-mc/dragonfly/server/player"
 	"github.com/sandertv/gophertunnel/minecraft/text"
 	"github.com/xtt28/neptune/database"
+	"github.com/xtt28/neptune/database/model"
 	"github.com/xtt28/neptune/lookup"
+	"github.com/xtt28/neptune/moderation"
 	"github.com/xtt28/neptune/permission"
 	"github.com/xtt28/neptune/permission/permlvl"
 )
@@ -14,8 +18,7 @@ import (
 const kickMessage = `<aqua><bold>NEPTUNE ENFORCEMENT</bold></aqua>
 <grey>You were kicked from the server.
 Reason: <white>%s</white>
-
-You may rejoin the server now to continue playing.</grey>`
+Case ID: <white>#%d</white></grey>`
 
 type modKickCommandExec struct {
 	srv     *server.Server
@@ -49,6 +52,16 @@ func (c modKickCommandExec) Run(source cmd.Source, output *cmd.Output) {
 		return
 	}
 
-	subject.Disconnect(text.Colourf(kickMessage, c.Reason))
-	output.Print(text.Colourf("<green>Punishment successfully issued against %s</green>", c.Subject))
+	record := &model.Punishment{
+		Issuer: p.UUID(),
+		Subject: subject.UUID(),
+		Type: moderation.PunishmentTypeKick,
+	}
+	res := database.DB.Create(record)
+	if res.Error != nil {
+		output.Print(text.Colourf("<red>An error occurred while logging the punishment. We will still kick the player.</red>"))
+		log.Println(res.Error.Error())
+	}
+	subject.Disconnect(text.Colourf(kickMessage, c.Reason, record.ID))
+	output.Print(text.Colourf("<green>Punishment #%d successfully issued against %s</green>", record.ID, c.Subject))
 }
