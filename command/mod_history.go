@@ -66,6 +66,10 @@ func (c modHistoryCommandExec) Run(source cmd.Source, output *cmd.Output) {
 		bob.WriteString(text.Colourf("<diamond>%d. </diamond>", i + 1))
 		bob.WriteString(text.Colourf("<aqua>%s</aqua> <dark-grey>-</dark-grey> ", v.Type))
 		bob.WriteString(text.Colourf("<grey>%s</grey> (case #%d)\n", v.CreatedAt.Format(time.RFC822), v.ID))
+		issuerUsername, err := lookup.OfflineUUIDToUsername(database.DB, v.Issuer)
+		if err == nil {
+			bob.WriteString(text.Colourf("<grey>Issued by <white>%s</white></grey>\n", issuerUsername))
+		}
 		reason := v.Reason
 		if reason == "" {
 			reason = "<red>None provided</red>"
