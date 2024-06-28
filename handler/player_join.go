@@ -2,6 +2,7 @@ package handler
 
 import (
 	"log"
+	"strings"
 
 	"github.com/df-mc/dragonfly/server/player"
 	"github.com/df-mc/dragonfly/server/player/title"
@@ -27,8 +28,9 @@ func handleJoin(p *player.Player) {
 		p.Disconnect("We could not initialize your user profile. Please try again or contact an administrator.")
 		return
 	}
-	if profileTarget.LastUsername != p.Name() {
-		profileTarget.LastUsername = p.Name()
+	username := strings.ToLower(p.Name())
+	if profileTarget.LastUsername != username {
+		profileTarget.LastUsername = username
 		database.DB.Save(profileTarget)
 	}
 	
