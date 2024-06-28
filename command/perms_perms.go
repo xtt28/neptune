@@ -16,11 +16,11 @@ import (
 	"gorm.io/gorm"
 )
 
-type permsSetCommandExec struct{
-	srv *server.Server
-	Set cmd.SubCommand `cmd:"set"`
-	Subject string `cmd:"subject"`
-	Level string `cmd:"level"`
+type permsSetCommandExec struct {
+	srv     *server.Server
+	Set     cmd.SubCommand `cmd:"set"`
+	Subject string         `cmd:"subject"`
+	Level   string         `cmd:"level"`
 }
 
 func (c permsSetCommandExec) Run(source cmd.Source, output *cmd.Output) {

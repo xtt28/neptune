@@ -8,9 +8,9 @@ import (
 
 type BasePlayerHandler struct {
 	player.NopHandler
-	db *gorm.DB
+	db  *gorm.DB
 	srv *server.Server
-	p  *player.Player
+	p   *player.Player
 }
 
 func newBaseHandler(db *gorm.DB, srv *server.Server, p *player.Player) *BasePlayerHandler {

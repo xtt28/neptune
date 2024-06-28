@@ -18,7 +18,7 @@ import (
 func handleJoin(p *player.Player) {
 	p.EnableInstantRespawn()
 	scoreboard.Render(p, stats.GetStats(p), econlookup.GetBitsBalance(p))
-	
+
 	game.SendToSpawn(p, false)
 
 	profileTarget := &model.UserProfile{}
@@ -33,6 +33,6 @@ func handleJoin(p *player.Player) {
 		profileTarget.LastUsername = username
 		database.DB.Save(profileTarget)
 	}
-	
+
 	p.SendTitle(title.New(text.Colourf("<diamond><bold>Welcome</bold></diamond>")).WithSubtitle(text.Colourf("<grey>to Neptune</grey>")))
 }

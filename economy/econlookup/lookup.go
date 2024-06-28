@@ -16,7 +16,7 @@ func GetBitsBalance(subject *player.Player) uint64 {
 	if cachedBal, ok := BitsCache[subjectUUID]; ok {
 		return cachedBal
 	}
-	
+
 	dest := &model.Balance{
 		Subject: subjectUUID,
 	}

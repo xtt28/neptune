@@ -9,9 +9,9 @@ import (
 )
 
 type Punishment struct {
-	Issuer uuid.UUID
-	Subject uuid.UUID
-	Type moderation.PunishmentType
+	Issuer    uuid.UUID
+	Subject   uuid.UUID
+	Type      moderation.PunishmentType
 	CreatedAt time.Time
 	ExpiresAt sql.NullTime
 }

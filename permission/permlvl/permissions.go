@@ -19,11 +19,11 @@ var LevelToName = map[PermissionLevel]string{
 }
 
 var NameToLevel = map[string]PermissionLevel{
-	"default": 100,
-	"plus": 150,
+	"default":   100,
+	"plus":      150,
 	"moderator": 250,
-	"admin": 300,
-	"owner": 350,
+	"admin":     300,
+	"owner":     350,
 }
 
 var LevelToChatFormat = map[PermissionLevel]string{

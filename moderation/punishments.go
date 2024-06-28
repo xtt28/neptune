@@ -3,6 +3,6 @@ package moderation
 type PunishmentType string
 
 const (
-	PunishmentTypeBan PunishmentType = "ban"
+	PunishmentTypeBan  PunishmentType = "ban"
 	PunishmentTypeMute PunishmentType = "mute"
 )

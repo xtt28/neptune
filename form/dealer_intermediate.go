@@ -28,7 +28,7 @@ func (h DealerIntermediateMenuHandler) Submit(submitter form.Submitter, pressed 
 
 	if pressed.Text == "Choose a kit" {
 		ShowKitSelector(p)
-		return	
+		return
 	} else if pressed.Text == "Perk shop" {
 		p.Message(text.Colourf("<red><bold>UNSUPPORTED</bold></red> <grey>This feature hasn't been implemented yet.</grey>"))
 	}

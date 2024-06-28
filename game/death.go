@@ -13,8 +13,8 @@ import (
 
 func RecordKill(attacker, target *player.Player) {
 	attacker.SendPopup(text.Colourf("<grey>You killed <redstone>%s</redstone></grey>", target.Name()))
-	fmt.Fprint(chat.Global, text.Colourf("<dark-grey>»</dark-grey> <emerald>%s</emerald> <grey>killed</grey> <redstone>%s</redstone> <dark-grey>(%.1f )</dark-grey>", attacker.Name(), target.Name(), attacker.Health() / 2))
-	economy.AddBits(attacker, uint64(rand.Intn(6) + 5))
+	fmt.Fprint(chat.Global, text.Colourf("<dark-grey>»</dark-grey> <emerald>%s</emerald> <grey>killed</grey> <redstone>%s</redstone> <dark-grey>(%.1f )</dark-grey>", attacker.Name(), target.Name(), attacker.Health()/2))
+	economy.AddBits(attacker, uint64(rand.Intn(6)+5))
 
 	stats.AddKill(attacker)
 	stats.AddDeath(target)

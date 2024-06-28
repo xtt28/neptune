@@ -12,7 +12,7 @@ import (
 )
 
 func (m *BasePlayerHandler) HandleAttackEntity(ctx *event.Context, e world.Entity, force, height *float64, critical *bool) {
-	p, ok := e.(*player.Player);
+	p, ok := e.(*player.Player)
 	if !ok {
 		return
 	}

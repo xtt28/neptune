@@ -22,7 +22,7 @@ func AddBits(target *player.Player, amount uint64) {
 	} else {
 		log.Println(err)
 	}
-	
+
 	if amount > 0 {
 		target.Message(text.Colourf("<grey><aqua>+%d</aqua> bits</grey>", amount))
 	}
