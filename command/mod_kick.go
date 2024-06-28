@@ -56,6 +56,7 @@ func (c modKickCommandExec) Run(source cmd.Source, output *cmd.Output) {
 		Issuer: p.UUID(),
 		Subject: subject.UUID(),
 		Type: moderation.PunishmentTypeKick,
+		Reason: c.Reason,
 	}
 	res := database.DB.Create(record)
 	if res.Error != nil {

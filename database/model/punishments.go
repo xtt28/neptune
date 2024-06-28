@@ -13,6 +13,7 @@ type Punishment struct {
 	Issuer    uuid.UUID
 	Subject   uuid.UUID
 	Type      moderation.PunishmentType
+	Reason    string
 	CreatedAt time.Time
 	ExpiresAt sql.NullTime
 }
