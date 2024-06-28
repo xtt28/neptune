@@ -15,7 +15,7 @@ const kickMessage = `<aqua><bold>NEPTUNE ENFORCEMENT</bold></aqua>
 <grey>You were kicked from the server.
 Reason: <white>%s</white>
 
-You may rejoin the server to continue playing.</grey>`
+You may rejoin the server now to continue playing.</grey>`
 
 type modKickCommandExec struct {
 	srv     *server.Server
@@ -42,6 +42,10 @@ func (c modKickCommandExec) Run(source cmd.Source, output *cmd.Output) {
 	}
 	if subject.UUID() == p.UUID() {
 		output.Print(text.Colourf("<red>You can't kick yourself.</red>"))
+		return
+	}
+	if permission.PermLevel(database.DB, subject.UUID()) >= permLvl {
+		output.Print(text.Colourf("<red>You can't kick this player because their rank is higher than or equal to yours.</red>"))
 		return
 	}
 
