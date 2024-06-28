@@ -6,6 +6,6 @@ import (
 )
 
 type Permission struct {
-	Subject uuid.UUID `gorm:"uniqueIndex"`
+	Subject uuid.UUID `gorm:"primaryKey"`
 	Level   permlvl.PermissionLevel
 }
